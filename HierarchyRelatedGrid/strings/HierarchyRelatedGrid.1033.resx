@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Control_Name" xml:space="preserve"><value>Hierarchy related records</value></data>
+  <data name="Control_Desc" xml:space="preserve"><value>Read-only list of the records of a table related to the current record and to all its hierarchy descendants (e.g. opportunities of child accounts).</value></data>
+  <data name="BoundField_Name" xml:space="preserve"><value>Host field</value></data>
+  <data name="BoundField_Desc" xml:space="preserve"><value>Form field hosting the component. Its value is neither read nor modified.</value></data>
+  <data name="ViewId_Name" xml:space="preserve"><value>View ID</value></data>
+  <data name="ViewId_Desc" xml:space="preserve"><value>GUID of the system view (savedquery) or personal view (userquery) to display. Provides the table, columns, filters and default sort.</value></data>
+  <data name="LookupAttribute_Name" xml:space="preserve"><value>Lookup to the hierarchy</value></data>
+  <data name="LookupAttribute_Desc" xml:space="preserve"><value>Logical name of the lookup of the displayed table pointing to the hierarchical table (e.g. customerid, parentaccountid, regardingobjectid).</value></data>
+  <data name="HierarchyEntity_Name" xml:space="preserve"><value>Hierarchical table (optional)</value></data>
+  <data name="HierarchyEntity_Desc" xml:space="preserve"><value>Logical name of the hierarchical table. Default: the form table (e.g. account).</value></data>
+  <data name="IncludeCurrent_Name" xml:space="preserve"><value>Include current record</value></data>
+  <data name="IncludeCurrent_Desc" xml:space="preserve"><value>Yes: also shows the records related to the current record. No: only those of its descendants.</value></data>
+  <data name="ShowHierarchyColumn_Name" xml:space="preserve"><value>Show parent record column</value></data>
+  <data name="ShowHierarchyColumn_Desc" xml:space="preserve"><value>Adds a column showing which record of the hierarchy each row belongs to.</value></data>
+  <data name="PageSize_Name" xml:space="preserve"><value>Rows per page</value></data>
+  <data name="PageSize_Desc" xml:space="preserve"><value>Between 5 and 250. Default: 25.</value></data>
+  <data name="Value_Yes" xml:space="preserve"><value>Yes</value></data>
+  <data name="Value_No" xml:space="preserve"><value>No</value></data>
+</root>

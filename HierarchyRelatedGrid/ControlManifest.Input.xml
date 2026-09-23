@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="SZA" constructor="HierarchyRelatedGrid" version="1.0.2" display-name-key="Control_Name" description-key="Control_Desc" control-type="virtual" >
+    <external-service-usage enabled="false">
+    </external-service-usage>
+
+    <type-group name="anyField">
+      <type>SingleLine.Text</type>
+      <type>SingleLine.Email</type>
+      <type>SingleLine.Phone</type>
+      <type>SingleLine.URL</type>
+      <type>Multiple</type>
+      <type>Whole.None</type>
+      <type>Decimal</type>
+      <type>FP</type>
+      <type>Currency</type>
+      <type>DateAndTime.DateOnly</type>
+      <type>DateAndTime.DateAndTime</type>
+      <type>OptionSet</type>
+      <type>TwoOptions</type>
+    </type-group>
+
+    <!-- Champ support : le contrôle n'en lit pas la valeur, il sert uniquement à poser le composant sur le formulaire (ex. le nom du compte). -->
+    <property name="boundField" display-name-key="BoundField_Name" description-key="BoundField_Desc" of-type-group="anyField" usage="bound" required="true" />
+
+    <property name="viewId" display-name-key="ViewId_Name" description-key="ViewId_Desc" of-type="SingleLine.Text" usage="input" required="true" />
+
+    <property name="lookupAttribute" display-name-key="LookupAttribute_Name" description-key="LookupAttribute_Desc" of-type="SingleLine.Text" usage="input" required="true" />
+
+    <property name="hierarchyEntity" display-name-key="HierarchyEntity_Name" description-key="HierarchyEntity_Desc" of-type="SingleLine.Text" usage="input" required="false" />
+
+    <property name="includeCurrentRecord" display-name-key="IncludeCurrent_Name" description-key="IncludeCurrent_Desc" of-type="Enum" usage="input" required="true" default-value="1">
+      <value name="Yes" display-name-key="Value_Yes">1</value>
+      <value name="No" display-name-key="Value_No">0</value>
+    </property>
+
+    <property name="showHierarchyColumn" display-name-key="ShowHierarchyColumn_Name" description-key="ShowHierarchyColumn_Desc" of-type="Enum" usage="input" required="true" default-value="1">
+      <value name="Yes" display-name-key="Value_Yes">1</value>
+      <value name="No" display-name-key="Value_No">0</value>
+    </property>
+
+    <property name="pageSize" display-name-key="PageSize_Name" description-key="PageSize_Desc" of-type="Whole.None" usage="input" required="false" default-value="25" />
+
+    <resources>
+      <code path="index.ts" order="1"/>
+      <platform-library name="React" version="16.14.0" />
+      <platform-library name="Fluent" version="9.46.2" />
+      <resx path="strings/HierarchyRelatedGrid.1036.resx" version="1.0.0" />
+      <resx path="strings/HierarchyRelatedGrid.1033.resx" version="1.0.0" />
+    </resources>
+    <feature-usage>
+      <uses-feature name="Utility" required="true" />
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
+  </control>
+</manifest>

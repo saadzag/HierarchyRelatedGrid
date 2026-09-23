@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Control_Name" xml:space="preserve"><value>Enregistrements liés de la hiérarchie</value></data>
+  <data name="Control_Desc" xml:space="preserve"><value>Affiche, en lecture seule, les enregistrements d&apos;une table liés à l&apos;enregistrement courant et à toute sa descendance hiérarchique (ex. opportunités des comptes enfants).</value></data>
+  <data name="BoundField_Name" xml:space="preserve"><value>Champ support</value></data>
+  <data name="BoundField_Desc" xml:space="preserve"><value>Champ du formulaire sur lequel le composant est posé. Sa valeur n&apos;est ni lue ni modifiée.</value></data>
+  <data name="ViewId_Name" xml:space="preserve"><value>Identifiant de la vue</value></data>
+  <data name="ViewId_Desc" xml:space="preserve"><value>GUID de la vue système (savedquery) ou personnelle (userquery) de la table à afficher. Fournit la table, les colonnes, les filtres et le tri par défaut.</value></data>
+  <data name="LookupAttribute_Name" xml:space="preserve"><value>Attribut de lien vers la hiérarchie</value></data>
+  <data name="LookupAttribute_Desc" xml:space="preserve"><value>Nom logique de la recherche de la table affichée qui pointe vers la table hiérarchique (ex. customerid, parentaccountid, regardingobjectid).</value></data>
+  <data name="HierarchyEntity_Name" xml:space="preserve"><value>Table hiérarchique (optionnel)</value></data>
+  <data name="HierarchyEntity_Desc" xml:space="preserve"><value>Nom logique de la table hiérarchique. Par défaut : la table du formulaire (ex. account).</value></data>
+  <data name="IncludeCurrent_Name" xml:space="preserve"><value>Inclure l&apos;enregistrement courant</value></data>
+  <data name="IncludeCurrent_Desc" xml:space="preserve"><value>Oui : affiche aussi les enregistrements liés à l&apos;enregistrement courant. Non : uniquement ceux de ses descendants.</value></data>
+  <data name="ShowHierarchyColumn_Name" xml:space="preserve"><value>Afficher la colonne de rattachement</value></data>
+  <data name="ShowHierarchyColumn_Desc" xml:space="preserve"><value>Ajoute une colonne indiquant à quel enregistrement de la hiérarchie chaque ligne est rattachée.</value></data>
+  <data name="PageSize_Name" xml:space="preserve"><value>Nombre de lignes par page</value></data>
+  <data name="PageSize_Desc" xml:space="preserve"><value>Entre 5 et 250. Par défaut : 25.</value></data>
+  <data name="Value_Yes" xml:space="preserve"><value>Oui</value></data>
+  <data name="Value_No" xml:space="preserve"><value>Non</value></data>
+</root>
