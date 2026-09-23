@@ -31,7 +31,7 @@ export interface LayoutCell {
 function parseXml(xml: string, what: string): Document {
     const doc = new DOMParser().parseFromString(xml, "text/xml");
     if (doc.getElementsByTagName("parsererror").length > 0) {
-        throw new Error(`XML invalide (${what}).`);
+        throw new Error(`Invalid XML (${what}).`);
     }
     return doc;
 }
@@ -43,7 +43,7 @@ function childElements(parent: Element, tagName: string): Element[] {
 function rootEntity(doc: Document): Element {
     const entity = childElements(doc.documentElement, "entity")[0];
     if (!entity) {
-        throw new Error("La vue ne contient pas d'élément <entity>.");
+        throw new Error("The view has no <entity> element.");
     }
     return entity;
 }

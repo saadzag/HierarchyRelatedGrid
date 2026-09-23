@@ -20,7 +20,7 @@
       <type>TwoOptions</type>
     </type-group>
 
-    <!-- Champ support : le contrôle n'en lit pas la valeur, il sert uniquement à poser le composant sur le formulaire (ex. le nom du compte). -->
+    <!-- Host field: its value is not used, it only hosts the component on the form (e.g. the account name). -->
     <property name="boundField" display-name-key="BoundField_Name" description-key="BoundField_Desc" of-type-group="anyField" usage="bound" required="true" />
 
     <property name="viewId" display-name-key="ViewId_Name" description-key="ViewId_Desc" of-type="SingleLine.Text" usage="input" required="true" />
@@ -45,7 +45,6 @@
       <code path="index.ts" order="1"/>
       <platform-library name="React" version="16.14.0" />
       <platform-library name="Fluent" version="9.46.2" />
-      <resx path="strings/HierarchyRelatedGrid.1036.resx" version="1.0.0" />
       <resx path="strings/HierarchyRelatedGrid.1033.resx" version="1.0.0" />
     </resources>
     <feature-usage>

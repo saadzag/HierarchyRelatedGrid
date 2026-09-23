@@ -253,17 +253,17 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
 
     const content = (() => {
         if (!recordId) {
-            return <Text className={styles.empty}>Enregistrez la fiche pour afficher les enregistrements de la hiérarchie.</Text>;
+            return <Text className={styles.empty}>Save the record to display the related records of its hierarchy.</Text>;
         }
         if (configError) {
             return (
                 <MessageBar intent="error">
-                    <MessageBarBody>Configuration invalide : {configError}</MessageBarBody>
+                    <MessageBarBody>Invalid configuration: {configError}</MessageBarBody>
                 </MessageBar>
             );
         }
         if (!config) {
-            return <Spinner size="small" label="Chargement…" />;
+            return <Spinner size="small" label="Loading…" />;
         }
         return renderGrid(config);
     })();
@@ -280,7 +280,7 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
                         openRecord(config.target.logicalName, recordKey, e.ctrlKey || e.metaKey);
                     }}
                 >
-                    {value.text || "(sans nom)"}
+                    {value.text || "(no name)"}
                 </Link>
             );
         } else if (value.lookup && value.text) {
@@ -311,7 +311,7 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
         const total = result?.totalCount ?? -1;
         const limitExceeded = (result?.totalCountLimitExceeded ?? false) || total >= MAX_TOTAL_COUNT;
         const pageCount = total >= 0 && !limitExceeded ? Math.max(1, Math.ceil(total / pageSize)) : undefined;
-        const countLabel = total < 0 ? "" : limitExceeded ? `${MAX_TOTAL_COUNT.toLocaleString()}+ enregistrements` : `${total.toLocaleString()} enregistrement${total > 1 ? "s" : ""}`;
+        const countLabel = total < 0 ? "" : limitExceeded ? `${MAX_TOTAL_COUNT.toLocaleString()}+ records` : `${total.toLocaleString()} record${total === 1 ? "" : "s"}`;
 
         return (
             <>
@@ -356,7 +356,7 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
                         </TableBody>
                     </Table>
                     {!loading && !queryError && result && records.length === 0 && (
-                        <div className={styles.empty}>Aucun enregistrement trouvé.</div>
+                        <div className={styles.empty}>No records found.</div>
                     )}
                 </div>
                 {queryError && (
@@ -368,14 +368,14 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
                     <Text size={200}>{countLabel}</Text>
                     <div className={styles.pager}>
                         {loading && <Spinner size="extra-tiny" />}
-                        <Tooltip content="Première page" relationship="label">
+                        <Tooltip content="First page" relationship="label">
                             <Button appearance="subtle" size="small" icon={<ChevronDoubleLeftIcon />} disabled={page <= 1 || loading} onClick={() => setPage(1)} />
                         </Tooltip>
-                        <Tooltip content="Page précédente" relationship="label">
+                        <Tooltip content="Previous page" relationship="label">
                             <Button appearance="subtle" size="small" icon={<ChevronLeftIcon />} disabled={page <= 1 || loading} onClick={() => setPage(page - 1)} />
                         </Tooltip>
                         <Text size={200}>Page {page}{pageCount ? ` / ${pageCount}` : ""}</Text>
-                        <Tooltip content="Page suivante" relationship="label">
+                        <Tooltip content="Next page" relationship="label">
                             <Button appearance="subtle" size="small" icon={<ChevronRightIcon />} disabled={!result?.moreRecords || loading} onClick={() => setPage(page + 1)} />
                         </Tooltip>
                     </div>
@@ -392,19 +392,19 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
                         <Input
                             className={styles.search}
                             size="small"
-                            placeholder={`Rechercher (${config.target.attributeLabels[config.target.primaryNameAttribute] ?? config.target.primaryNameAttribute})`}
+                            placeholder={`Search (${config.target.attributeLabels[config.target.primaryNameAttribute] ?? config.target.primaryNameAttribute})`}
                             value={searchInput}
                             onChange={(_, data) => setSearchInput(data.value)}
                             contentBefore={<SearchIcon />}
                             contentAfter={
                                 searchInput ? (
-                                    <Button appearance="transparent" size="small" icon={<DismissIcon />} aria-label="Effacer" onClick={() => setSearchInput("")} />
+                                    <Button appearance="transparent" size="small" icon={<DismissIcon />} aria-label="Clear" onClick={() => setSearchInput("")} />
                                 ) : undefined
                             }
                         />
                     )}
                     <div className={styles.spacer} />
-                    <Tooltip content="Actualiser" relationship="label">
+                    <Tooltip content="Refresh" relationship="label">
                         <Button appearance="subtle" size="small" icon={<RefreshIcon />} disabled={loading} onClick={() => setRefreshKey((k) => k + 1)} />
                     </Tooltip>
                 </div>

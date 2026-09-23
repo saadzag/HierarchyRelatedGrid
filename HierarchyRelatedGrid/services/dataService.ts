@@ -54,7 +54,7 @@ export async function loadView(webApi: ComponentFramework.WebApi, viewId: string
             // Try the next view table.
         }
     }
-    throw new Error(`Vue introuvable ou inaccessible : ${viewId}`);
+    throw new Error(`View not found or not accessible: ${viewId}`);
 }
 
 interface RawAttribute {
@@ -129,7 +129,7 @@ export async function executeFetch(clientUrl: string, entitySetName: string, fet
     });
     const body = (await response.json()) as DataRecord & { error?: { message?: string } };
     if (!response.ok) {
-        throw new Error(body.error?.message ?? `Erreur ${response.status} lors de la récupération des données.`);
+        throw new Error(body.error?.message ?? `Error ${response.status} while retrieving the records.`);
     }
     return {
         records: (body.value as DataRecord[]) ?? [],

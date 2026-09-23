@@ -5,7 +5,7 @@
     <UniqueName>HierarchyRelatedGrid</UniqueName>
     <LocalizedNames>
       <!-- Localized Solution Name in language code -->
-      <LocalizedName description="Enregistrements liés de la hiérarchie" languagecode="1033" />
+      <LocalizedName description="Hierarchy Related Grid" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
     <Version>1.0</Version>
