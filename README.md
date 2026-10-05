@@ -4,7 +4,11 @@ A read-only **Power Apps component (PCF)** for **model-driven apps** that displa
 
 Typical use case: on a parent account, list the opportunities (or cases, activities, contacts, custom table rows…) of all its child accounts, grand-child accounts, and so on — without aggregating anything, just a sub-grid.
 
-![Screenshot](docs/screenshot.png)
+<p align="center">
+  <img src="docs/screenshot.png" alt="HierarchyRelatedGrid on a parent account: opportunities of the child accounts, with the account each opportunity belongs to" width="720" />
+  <br />
+  <em>On a parent account: the opportunities of its child accounts, with the account each one belongs to, quick search and paging.</em>
+</p>
 
 ## Features
 
