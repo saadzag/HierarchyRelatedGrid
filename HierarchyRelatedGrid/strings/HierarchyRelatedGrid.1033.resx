@@ -22,4 +22,24 @@
   <data name="PageSize_Desc" xml:space="preserve"><value>Between 5 and 250. Default: 25.</value></data>
   <data name="Value_Yes" xml:space="preserve"><value>Yes</value></data>
   <data name="Value_No" xml:space="preserve"><value>No</value></data>
+  <data name="Msg_SaveRecord" xml:space="preserve"><value>Save the record to display the related records of its hierarchy.</value></data>
+  <data name="Msg_InvalidConfig" xml:space="preserve"><value>Invalid configuration: {0}</value></data>
+  <data name="Msg_Loading" xml:space="preserve"><value>Loading…</value></data>
+  <data name="Msg_NoName" xml:space="preserve"><value>(no name)</value></data>
+  <data name="Msg_NoRecords" xml:space="preserve"><value>No records found.</value></data>
+  <data name="Msg_RecordCountOne" xml:space="preserve"><value>{0} record</value></data>
+  <data name="Msg_RecordCountMany" xml:space="preserve"><value>{0} records</value></data>
+  <data name="Msg_RecordCountLimit" xml:space="preserve"><value>{0}+ records</value></data>
+  <data name="Msg_Page" xml:space="preserve"><value>Page {0}</value></data>
+  <data name="Msg_PageOf" xml:space="preserve"><value>Page {0} / {1}</value></data>
+  <data name="Btn_FirstPage" xml:space="preserve"><value>First page</value></data>
+  <data name="Btn_PreviousPage" xml:space="preserve"><value>Previous page</value></data>
+  <data name="Btn_NextPage" xml:space="preserve"><value>Next page</value></data>
+  <data name="Btn_Refresh" xml:space="preserve"><value>Refresh</value></data>
+  <data name="Btn_ClearSearch" xml:space="preserve"><value>Clear</value></data>
+  <data name="Search_Placeholder" xml:space="preserve"><value>Search ({0})</value></data>
+  <data name="Err_ViewNotFound" xml:space="preserve"><value>View not found or not accessible: {0}</value></data>
+  <data name="Err_Http" xml:space="preserve"><value>Error {0} while retrieving the records.</value></data>
+  <data name="Err_InvalidXml" xml:space="preserve"><value>Invalid XML ({0}).</value></data>
+  <data name="Err_NoEntity" xml:space="preserve"><value>The view has no &lt;entity&gt; element.</value></data>
 </root>

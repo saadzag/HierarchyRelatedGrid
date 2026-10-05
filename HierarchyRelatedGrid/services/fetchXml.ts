@@ -1,3 +1,5 @@
+import { LocalizedError } from "./strings";
+
 /** Alias used for the injected hierarchy link-entity and its aliased attributes. */
 export const HIERARCHY_ALIAS = "hrg_hier";
 export const HIERARCHY_ID_KEY = "hrg_hier_id";
@@ -31,7 +33,7 @@ export interface LayoutCell {
 function parseXml(xml: string, what: string): Document {
     const doc = new DOMParser().parseFromString(xml, "text/xml");
     if (doc.getElementsByTagName("parsererror").length > 0) {
-        throw new Error(`Invalid XML (${what}).`);
+        throw new LocalizedError("Err_InvalidXml", [what]);
     }
     return doc;
 }
@@ -43,7 +45,7 @@ function childElements(parent: Element, tagName: string): Element[] {
 function rootEntity(doc: Document): Element {
     const entity = childElements(doc.documentElement, "entity")[0];
     if (!entity) {
-        throw new Error("The view has no <entity> element.");
+        throw new LocalizedError("Err_NoEntity");
     }
     return entity;
 }

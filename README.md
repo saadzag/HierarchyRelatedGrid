@@ -19,7 +19,7 @@ Typical use case: on a parent account, list the opportunities (or cases, activit
 - **Server-side** paging, sorting and quick search: scales to large hierarchies.
 - Click a name, double-click a row or press Enter to open the record (Ctrl+click: new window); lookup columns are clickable.
 - Built with React & Fluent UI v9 (platform libraries), follows the app theme.
-- Labels in English and French.
+- Multilingual: the grid and its properties follow the user's UI language (English and French included, English as fallback). Column headers and values come from Dataverse in the user's language.
 
 ## Download
 

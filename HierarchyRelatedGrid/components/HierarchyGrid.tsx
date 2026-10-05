@@ -35,6 +35,7 @@ import {
     normalizeGuid,
 } from "../services/dataService";
 import { SortOption, buildQuery, getDefaultSort, getLinkEntityMap, parseLayout } from "../services/fetchXml";
+import { Translate, translateError } from "../services/strings";
 
 export interface HierarchyGridProps {
     services: Services;
@@ -45,6 +46,7 @@ export interface HierarchyGridProps {
     includeCurrent: boolean;
     showHierarchyColumn: boolean;
     pageSize: number;
+    t: Translate;
     theme?: Theme;
 }
 
@@ -128,12 +130,8 @@ function recordIdOf(record: DataRecord, config: GridConfig): string {
     return typeof id === "string" ? id : "";
 }
 
-function errorMessage(e: unknown): string {
-    return e instanceof Error ? e.message : String(e);
-}
-
 export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
-    const { services, recordId, hierarchyEntity, viewId, lookupAttribute, includeCurrent, showHierarchyColumn, pageSize } = props;
+    const { services, recordId, hierarchyEntity, viewId, lookupAttribute, includeCurrent, showHierarchyColumn, pageSize, t } = props;
     const styles = useStyles();
 
     const [config, setConfig] = React.useState<GridConfig>();
@@ -163,7 +161,7 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
                 }
             } catch (e) {
                 if (!cancelled) {
-                    setConfigError(errorMessage(e));
+                    setConfigError(translateError(e, t));
                 }
             }
         };
@@ -171,7 +169,7 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
         return () => {
             cancelled = true;
         };
-    }, [services, viewId, hierarchyEntity, showHierarchyColumn]);
+    }, [services, viewId, hierarchyEntity, showHierarchyColumn, t]);
 
     // Debounced server-side search.
     React.useEffect(() => {
@@ -211,7 +209,7 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
                 search: search && config.target.primaryNameAttribute ? { attribute: config.target.primaryNameAttribute, text: search } : undefined,
             });
         } catch (e) {
-            setQueryError(errorMessage(e));
+            setQueryError(translateError(e, t));
             setLoading(false);
             return;
         }
@@ -223,7 +221,7 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
                 }
             } catch (e) {
                 if (current === requestId.current) {
-                    setQueryError(errorMessage(e));
+                    setQueryError(translateError(e, t));
                 }
             } finally {
                 if (current === requestId.current) {
@@ -232,7 +230,7 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
             }
         };
         void run();
-    }, [config, recordId, lookupAttribute, includeCurrent, pageSize, page, sort, search, refreshKey, services]);
+    }, [config, recordId, lookupAttribute, includeCurrent, pageSize, page, sort, search, refreshKey, services, t]);
 
     const openRecord = React.useCallback(
         (entityName: string, id: string, newWindow: boolean) => {
@@ -253,17 +251,17 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
 
     const content = (() => {
         if (!recordId) {
-            return <Text className={styles.empty}>Save the record to display the related records of its hierarchy.</Text>;
+            return <Text className={styles.empty}>{t("Msg_SaveRecord")}</Text>;
         }
         if (configError) {
             return (
                 <MessageBar intent="error">
-                    <MessageBarBody>Invalid configuration: {configError}</MessageBarBody>
+                    <MessageBarBody>{t("Msg_InvalidConfig", configError)}</MessageBarBody>
                 </MessageBar>
             );
         }
         if (!config) {
-            return <Spinner size="small" label="Loading…" />;
+            return <Spinner size="small" label={t("Msg_Loading")} />;
         }
         return renderGrid(config);
     })();
@@ -280,7 +278,7 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
                         openRecord(config.target.logicalName, recordKey, e.ctrlKey || e.metaKey);
                     }}
                 >
-                    {value.text || "(no name)"}
+                    {value.text || t("Msg_NoName")}
                 </Link>
             );
         } else if (value.lookup && value.text) {
@@ -311,7 +309,7 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
         const total = result?.totalCount ?? -1;
         const limitExceeded = (result?.totalCountLimitExceeded ?? false) || total >= MAX_TOTAL_COUNT;
         const pageCount = total >= 0 && !limitExceeded ? Math.max(1, Math.ceil(total / pageSize)) : undefined;
-        const countLabel = total < 0 ? "" : limitExceeded ? `${MAX_TOTAL_COUNT.toLocaleString()}+ records` : `${total.toLocaleString()} record${total === 1 ? "" : "s"}`;
+        const countLabel = total < 0 ? "" : limitExceeded ? t("Msg_RecordCountLimit", MAX_TOTAL_COUNT.toLocaleString()) : t(total === 1 ? "Msg_RecordCountOne" : "Msg_RecordCountMany", total.toLocaleString());
 
         return (
             <>
@@ -356,7 +354,7 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
                         </TableBody>
                     </Table>
                     {!loading && !queryError && result && records.length === 0 && (
-                        <div className={styles.empty}>No records found.</div>
+                        <div className={styles.empty}>{t("Msg_NoRecords")}</div>
                     )}
                 </div>
                 {queryError && (
@@ -368,14 +366,14 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
                     <Text size={200}>{countLabel}</Text>
                     <div className={styles.pager}>
                         {loading && <Spinner size="extra-tiny" />}
-                        <Tooltip content="First page" relationship="label">
+                        <Tooltip content={t("Btn_FirstPage")} relationship="label">
                             <Button appearance="subtle" size="small" icon={<ChevronDoubleLeftIcon />} disabled={page <= 1 || loading} onClick={() => setPage(1)} />
                         </Tooltip>
-                        <Tooltip content="Previous page" relationship="label">
+                        <Tooltip content={t("Btn_PreviousPage")} relationship="label">
                             <Button appearance="subtle" size="small" icon={<ChevronLeftIcon />} disabled={page <= 1 || loading} onClick={() => setPage(page - 1)} />
                         </Tooltip>
-                        <Text size={200}>Page {page}{pageCount ? ` / ${pageCount}` : ""}</Text>
-                        <Tooltip content="Next page" relationship="label">
+                        <Text size={200}>{pageCount ? t("Msg_PageOf", page, pageCount) : t("Msg_Page", page)}</Text>
+                        <Tooltip content={t("Btn_NextPage")} relationship="label">
                             <Button appearance="subtle" size="small" icon={<ChevronRightIcon />} disabled={!result?.moreRecords || loading} onClick={() => setPage(page + 1)} />
                         </Tooltip>
                     </div>
@@ -392,19 +390,19 @@ export const HierarchyGrid: React.FC<HierarchyGridProps> = (props) => {
                         <Input
                             className={styles.search}
                             size="small"
-                            placeholder={`Search (${config.target.attributeLabels[config.target.primaryNameAttribute] ?? config.target.primaryNameAttribute})`}
+                            placeholder={t("Search_Placeholder", config.target.attributeLabels[config.target.primaryNameAttribute] ?? config.target.primaryNameAttribute)}
                             value={searchInput}
                             onChange={(_, data) => setSearchInput(data.value)}
                             contentBefore={<SearchIcon />}
                             contentAfter={
                                 searchInput ? (
-                                    <Button appearance="transparent" size="small" icon={<DismissIcon />} aria-label="Clear" onClick={() => setSearchInput("")} />
+                                    <Button appearance="transparent" size="small" icon={<DismissIcon />} aria-label={t("Btn_ClearSearch")} onClick={() => setSearchInput("")} />
                                 ) : undefined
                             }
                         />
                     )}
                     <div className={styles.spacer} />
-                    <Tooltip content="Refresh" relationship="label">
+                    <Tooltip content={t("Btn_Refresh")} relationship="label">
                         <Button appearance="subtle" size="small" icon={<RefreshIcon />} disabled={loading} onClick={() => setRefreshKey((k) => k + 1)} />
                     </Tooltip>
                 </div>

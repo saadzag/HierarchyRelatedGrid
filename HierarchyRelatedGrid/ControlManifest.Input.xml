@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="SZA" constructor="HierarchyRelatedGrid" version="1.0.2" display-name-key="Control_Name" description-key="Control_Desc" control-type="virtual" >
+  <control namespace="SZA" constructor="HierarchyRelatedGrid" version="1.0.4" display-name-key="Control_Name" description-key="Control_Desc" control-type="virtual" >
     <external-service-usage enabled="false">
     </external-service-usage>
 
@@ -45,7 +45,8 @@
       <code path="index.ts" order="1"/>
       <platform-library name="React" version="16.14.0" />
       <platform-library name="Fluent" version="9.46.2" />
-      <resx path="strings/HierarchyRelatedGrid.1033.resx" version="1.0.0" />
+      <resx path="strings/HierarchyRelatedGrid.1033.resx" version="1.0.1" />
+      <resx path="strings/HierarchyRelatedGrid.1036.resx" version="1.0.1" />
     </resources>
     <feature-usage>
       <uses-feature name="Utility" required="true" />

@@ -1,6 +1,7 @@
 import { IInputs, IOutputs } from "./generated/ManifestTypes";
 import { HierarchyGrid, HierarchyGridProps } from "./components/HierarchyGrid";
 import { Services, normalizeGuid } from "./services/dataService";
+import { Translate, createTranslator } from "./services/strings";
 import { Theme } from "@fluentui/react-components";
 import * as React from "react";
 
@@ -21,9 +22,11 @@ function firstNonEmpty(...values: (string | null | undefined)[]): string {
 
 export class HierarchyRelatedGrid implements ComponentFramework.ReactControl<IInputs, IOutputs> {
     private services: Services;
+    private t: Translate;
 
     public init(context: ComponentFramework.Context<IInputs>): void {
         const extended = context as unknown as ExtendedContext;
+        this.t = createTranslator(context.resources);
         this.services = {
             webApi: context.webAPI,
             utils: context.utils,
@@ -47,6 +50,7 @@ export class HierarchyRelatedGrid implements ComponentFramework.ReactControl<IIn
             includeCurrent: p.includeCurrentRecord.raw !== "0",
             showHierarchyColumn: p.showHierarchyColumn.raw !== "0",
             pageSize,
+            t: this.t,
             theme: extended.fluentDesignLanguage?.tokenTheme,
         };
         return React.createElement(HierarchyGrid, props);
